@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新加坡高级华文成语句子练习单 (P3-P6)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "KaiTi", "楷体", "STKaiti", serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 210mm;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #d32f2f;
+        }
+
+        .subtitle {
+            text-align: center;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: 2px solid #d32f2f;
+            background: white;
+            color: #d32f2f;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s;
+            font-family: inherit;
+        }
+
+        .btn:hover, .btn.active {
+            background: #d32f2f;
+            color: white;
+        }
+
+        .content-type-btn {
+            border-color: #1976d2;
+            color: #1976d2;
+        }
+
+        .content-type-btn:hover, .content-type-btn.active {
+            background: #1976d2;
+            color: white;
+        }
+
+        .info-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding: 10px 0;
+            border-bottom: 2px solid #333;
+        }
+
+        .info-item {
+            font-size: 16px;
+        }
+
+        .lesson-section {
+            margin-bottom: 30px;
+            page-break-inside: avoid;
+        }
+
+        .lesson-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #d32f2f;
+            margin-bottom: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1976d2;
+            margin: 15px 0 10px 0;
+        }
+
+        .sentence-list {
+            list-style: none;
+        }
+
+        .sentence-list li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            font-size: 15px;
+            line-height: 2;
+        }
+
+        .sentence-list li:before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #1976d2;
+        }
+
+        .idiom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .idiom-table th, .idiom-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        .idiom-table th {
+            background: #f5f5f5;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .idiom-name {
+            font-weight: bold;
+            color: #d32f2f;
+            font-size: 16px;
+        }
+
+        .idiom-explanation {
+            color: #555;
+        }
+
+        .idiom-example {
+            color: #1976d2;
+            font-style: italic;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none;
+            }
+
+            .lesson-section {
+                page-break-inside: avoid;
+            }
+
+            h1 {
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>新加坡高级华文成语句子练习单</h1>
+        <p class="subtitle">小学三年级至六年级 (P3-P6)</p>
+
+        <div class="controls">
+            <button class="btn active" data-level="p3">小三 (P3)</button>
+            <button class="btn" data-level="p4">小四 (P4)</button>
+            <button class="btn" data-level="p5">小五 (P5)</button>
+            <button class="btn" data-level="p6">小六 (P6)</button>
+        </div>
+
+        <div class="controls">
+            <button class="btn content-type-btn active" data-type="sentences">句子</button>
+            <button class="btn content-type-btn" data-type="idioms">成语</button>
+        </div>
+
+        <div class="info-section">
+            <span class="info-item">姓名：______________</span>
+            <span class="info-item">班级：______________</span>
+            <span class="info-item">日期：______________</span>
+        </div>
+
+        <div id="content"></div>
+    </div>
+
+    <script>
+        // P3 Data
+        const p3Data = [
+            { lessonNum: 1, title: "《好朋友》", sentences: ["小明是我的好朋友，我们经常一起上学。", "他待人友善，从不和同学吵架。", "每当我遇到困难时，他总是第一个来帮助我。", "我们的友谊就像一棵小树，需要用心浇灌才能茁壮成长。"], idioms: [{ name: "形影不离", explanation: "形容彼此关系亲密，经常在一起。", example: "他们俩是形影不离的好朋友。" }] },
+            { lessonNum: 2, title: "《校园生活》", sentences: ["每天早上，校园里都充满了同学们的欢声笑语。", "上课时，我们专心听讲，认真做笔记。", "下课后，操场上顿时热闹起来。", "老师教导我们要尊敬师长，友爱同学。"], idioms: [{ name: "专心致志", explanation: "一心一意，集中精神。", example: "他专心致志地看书，连妈妈叫他吃饭都没听见。" }] },
+            { lessonNum: 3, title: "《我的家庭》", sentences: ["我的家庭虽然不大，但是充满了温暖。", "爸爸每天辛勤工作，为了让我们过上更好的生活。", "妈妈总是无微不至地照顾我们。", "一家人围坐在一起吃饭，是最幸福的时刻。"], idioms: [{ name: "其乐融融", explanation: "形容快乐和谐的景象。", example: "春节时，全家人团聚在一起，其乐融融。" }] },
+            { lessonNum: 4, title: "《美丽的公园》", sentences: ["公园里绿树成荫，鲜花盛开。", "清晨，许多人在公园里锻炼身体。", "湖面上，几只天鹅优雅地游来游去。", "这里的景色美不胜收，让人流连忘返。"], idioms: [{ name: "鸟语花香", explanation: "鸟儿歌唱，花儿飘香，形容春天的美好景象。", example: "春天的公园里鸟语花香，令人心情愉快。" }] },
+            { lessonNum: 5, title: "《助人为乐》", sentences: ["帮助他人是一件快乐的事情。", "昨天，我看见一位老奶奶过马路，便主动上前搀扶。", "她感激地对我说：\"谢谢你，好孩子！\"", "听了这话，我心里甜滋滋的。"], idioms: [{ name: "雪中送炭", explanation: "比喻在别人急需时给予帮助。", example: "在我最困难的时候，他的帮助真是雪中送炭。" }] },
+            { lessonNum: 6, title: "《勤奋学习》", sentences: ["学习如逆水行舟，不进则退。", "他每天早起读书，从不偷懒。", "经过不断努力，他的成绩终于提高了。", "这份收获让他明白了付出就有回报的道理。"], idioms: [{ name: "勤能补拙", explanation: "勤奋能够弥补笨拙。", example: "虽然他天资不高，但相信勤能补拙，一定能取得成功。" }] },
+            { lessonNum: 7, title: "《诚实的孩子》", sentences: ["诚实是一种美德。", "小明不小心打碎了花瓶，但他主动向妈妈承认错误。", "妈妈不但没有责骂他，反而表扬了他的诚实。", "这个故事告诉我们，做人要诚实守信。"], idioms: [{ name: "一言九鼎", explanation: "形容说话分量重，作用大。", example: "他是个守信用的人，说过的话一言九鼎。" }] },
+            { lessonNum: 8, title: "《四季的变化》", sentences: ["春天来了，万物复苏，大地一片生机勃勃。", "夏天烈日炎炎，蝉儿在树上不停地叫着。", "秋天果实累累，农民伯伯忙着收割。", "冬天寒风刺骨，雪花纷纷扬扬地飘落下来。"], idioms: [{ name: "春暖花开", explanation: "春天气候温暖，百花盛开。", example: "等到春暖花开的时候，我们一起去郊游吧！" }] },
+            { lessonNum: 9, title: "《传统节日》", sentences: ["春节是中国最重要的传统节日。", "家家户户贴春联，挂灯笼，喜气洋洋。", "除夕夜，全家人围坐在一起吃团圆饭。", "孩子们收到红包，高兴得手舞足蹈。"], idioms: [{ name: "张灯结彩", explanation: "挂上灯笼，系上彩绸，形容喜庆的景象。", example: "节日期间，大街上张灯结彩，热闹非凡。" }] },
+            { lessonNum: 10, title: "《爱护环境》", sentences: ["地球是我们共同的家园。", "我们要爱护环境，不乱扔垃圾。", "多种树可以净化空气，美化环境。", "只有人人行动起来，才能让地球变得更美好。"], idioms: [{ name: "绿水青山", explanation: "指美好的自然环境。", example: "我们要保护绿水青山，留给子孙后代。" }] }
+        ];
+
+        // P4 Data
+        const p4Data = [
+            { lessonNum: 1, title: "《勇气》", sentences: ["面对困难，我们要有勇气去克服。", "他虽然害怕，但还是鼓起勇气上台演讲。", "台下响起了热烈的掌声，他松了一口气。", "这次经历让他明白，勇气可以战胜恐惧。"], idioms: [{ name: "勇往直前", explanation: "勇敢地一直向前进。", example: "不管遇到什么困难，我们都要勇往直前。" }] },
+            { lessonNum: 2, title: "《友谊的力量》", sentences: ["真正的友谊经得起时间的考验。", "当我生病时，好朋友每天都来探望我。", "她还帮我补习落下的功课。", "这份情谊让我深深感动。"], idioms: [{ name: "患难与共", explanation: "共同承担危险和困难。", example: "他们是患难与共的好朋友。" }] },
+            { lessonNum: 3, title: "《感恩的心》", sentences: ["我们要学会感恩身边的人。", "感谢父母的养育之恩。", "感谢老师的谆谆教导。", "怀着一颗感恩的心，生活会更美好。"], idioms: [{ name: "感恩戴德", explanation: "感激别人的恩德。", example: "他对帮助过自己的人感恩戴德。" }] },
+            { lessonNum: 4, title: "《坚持就是胜利》", sentences: ["做任何事情都要有恒心。", "他练习钢琴已经三年了，从不间断。", "虽然过程很辛苦，但他从未放弃。", "终于在比赛中获得了优异的成绩。"], idioms: [{ name: "持之以恒", explanation: "长久地坚持下去。", example: "学习需要持之以恒，不能三天打鱼两天晒网。" }] },
+            { lessonNum: 5, title: "《分享的快乐》", sentences: ["分享能让快乐加倍。", "小明把自己心爱的玩具分享给弟弟玩。", "看到弟弟开心的样子，他也笑了。", "原来，给予比接受更快乐。"], idioms: [{ name: "慷慨解囊", explanation: "毫不吝啬地拿出钱来帮助别人。", example: "听说灾区需要帮助，他立刻慷慨解囊。" }] },
+            { lessonNum: 6, title: "《尊重他人》", sentences: ["尊重他人是一种修养。", "我们要尊重每个人的想法和选择。", "即使意见不同，也要礼貌对待。", "这样，人与人之间才能和谐相处。"], idioms: [{ name: "以礼相待", explanation: "用礼貌的态度对待别人。", example: "无论对方是什么人，我们都应该以礼相待。" }] },
+            { lessonNum: 7, title: "《时间宝贵》", sentences: ["时间一去不复返。", "我们要珍惜每一分每一秒。", "不要等到失去了才懂得珍惜。", "合理安排时间，才能让生活更充实。"], idioms: [{ name: "光阴似箭", explanation: "形容时间过得很快。", example: "光阴似箭，转眼间我们已经毕业了。" }] },
+            { lessonNum: 8, title: "《团队合作》", sentences: ["团结就是力量。", "在拔河比赛中，大家齐心协力。", "每个人都使出全力，为了共同的目标。", "最终，我们班赢得了比赛。"], idioms: [{ name: "同心协力", explanation: "团结一致，共同努力。", example: "只要大家同心协力，就没有克服不了的困难。" }] },
+            { lessonNum: 9, title: "《谦虚使人进步》", sentences: ["谦虚是一种美德。", "他虽然成绩优秀，但从不骄傲。", "他总是虚心向别人请教。", "这种态度让他不断进步。"], idioms: [{ name: "虚怀若谷", explanation: "胸怀像山谷一样深广，形容十分谦虚。", example: "这位老教授虚怀若谷，深受学生爱戴。" }] }
+        ];
+
+        // P5 Data
+        const p5Data = [
+            { lessonNum: 1, title: "《责任》", sentences: ["每个人都有自己的责任。", "作为学生，我们的责任是好好学习。", "作为子女，我们要孝顺父母。", "勇于承担责任，才能赢得他人的信任。"], idioms: [{ name: "责无旁贷", explanation: "自己的责任，不能推卸给别人。", example: "保护环境，我们责无旁贷。" }] },
+            { lessonNum: 2, title: "《宽容的力量》", sentences: ["宽容是一种智慧。", "当别人犯错时，我们要学会原谅。", "斤斤计较只会让矛盾加深。", "宽容待人，路才会越走越宽。"], idioms: [{ name: "宽宏大量", explanation: "形容人度量大，能容人。", example: "他为人宽宏大量，从不与人计较。" }] },
+            { lessonNum: 3, title: "《自信》", sentences: ["自信是成功的基石。", "相信自己，才能发挥最大的潜力。", "不要因为一次失败就否定自己。", "保持自信，勇敢面对挑战。"], idioms: [{ name: "胸有成竹", explanation: "比喻做事之前已经有通盘的考虑。", example: "对于这次考试，他胸有成竹。" }] },
+            { lessonNum: 4, title: "《创新思维》", sentences: ["创新是推动社会进步的动力。", "我们要敢于打破常规，尝试新方法。", "很多时候，换个角度思考问题会有新发现。", "培养创新思维，才能适应未来的挑战。"], idioms: [{ name: "别出心裁", explanation: "另有一种构思或设计，指想出的办法与众不同。", example: "这个设计方案别出心裁，获得了评委的一致好评。" }] },
+            { lessonNum: 5, title: "《挫折教育》", sentences: ["人生不可能一帆风顺。", "遇到挫折时，不要气馁。", "每一次失败都是成长的机会。", "从挫折中吸取教训，才能变得更强大。"], idioms: [{ name: "百折不挠", explanation: "无论受多少挫折都不退缩，形容意志坚强。", example: "他凭着百折不挠的精神，终于实现了自己的梦想。" }] },
+            { lessonNum: 6, title: "《诚信为本》", sentences: ["诚信是做人的根本。", "言而无信的人不会得到他人的尊重。", "答应别人的事一定要做到。", "只有讲诚信，才能在社会上立足。"], idioms: [{ name: "一诺千金", explanation: "形容说话算数，极有信用。", example: "他是个一诺千金的人，从不食言。" }] },
+            { lessonNum: 7, title: "《细节决定成败》", sentences: ["细节往往决定事情的成败。", "一个小小的疏忽可能导致严重的后果。", "我们要养成细心的好习惯。", "注重细节，才能把事情做得完美。"], idioms: [{ name: "明察秋毫", explanation: "形容目光敏锐，连极细小的东西也能看得出来。", example: "这位侦探明察秋毫，不放过任何蛛丝马迹。" }] },
+            { lessonNum: 8, title: "《终身学习》", sentences: ["学习是一辈子的事。", "在这个快速变化的时代，我们要不断学习新知识。", "活到老，学到老。", "保持学习的热情，才能跟上时代的步伐。"], idioms: [{ name: "学无止境", explanation: "学习是没有尽头的。", example: "学无止境，我们要不断充实自己。" }] },
+            { lessonNum: 9, title: "《健康生活》", sentences: ["健康是人生最宝贵的财富。", "我们要养成良好的生活习惯。", "均衡饮食，适量运动，充足睡眠。", "有了健康的身体，才能更好地追求梦想。"], idioms: [{ name: "强身健体", explanation: "使身体强壮健康。", example: "他每天坚持跑步，为的是强身健体。" }] }
+        ];
+
+        // P6 Data
+        const p6Data = [
+            { lessonNum: 1, title: "《加油！加油！》", sentences: ["望着眼前的一幕，我的脑海中产生了一连串的疑问：我行吗？", "他发挥了不屈不挠的精神，一一克服了摆在他眼前的所有困难。", "在这么恶劣的环境下，他始终都不放弃，凭着顽强的意志，坚持到底。", "俗话说：天下无难事，只怕有心人。他让我明白了只要相信自己，就能把障碍移走，只要不放弃，凡事都能做到。"], idioms: [{ name: "不屈不挠", explanation: "形容意志坚强，永不屈服（挠：弯曲，比喻屈服）。", example: "只有不屈不挠的精神，才能战胜一切困难。" }, { name: "密密麻麻", explanation: "多而密的样子。", example: "广场上密密麻麻地挤满了人。" }] },
+            { lessonNum: 2, title: "《祖孙情》", sentences: ["祖父笑眯眯地对孙子说：\"你要牵着我的手，别走丢呀！\"", "他脸色苍白，冷得全身发抖，一连打了好几个喷嚏。", "看见小明故意把伞歪向他这边，他嘴唇微微抖动，双眼闪着泪光。", "这时，外面正下着倾盆大雨。风呼呼地吹着，雨哗哗地下着，密密的雨点在天地间织起了一张灰蒙蒙的大网。"], idioms: [{ name: "了如指掌", explanation: "形容对情况非常清楚，像指着自己的手掌给别人看。", example: "他很喜欢翻阅汽车杂志，对各厂牌的车了如指掌，是个标准的汽车迷。" }] },
+            { lessonNum: 3, title: "《美食小侦探》", sentences: ["除了家常小菜外，我还特别喜欢这间餐馆的一些菜肴，例如酸辣汤、清炒豆苗、香脆炸虾等。", "中午，太阳像个大火球，炙烤着大地。他热得满头大汗，头上都冒出蒸气来。", "东西不见了，我懊悔万分，眼泪忍不住夺眶而出。", "我见到失而复得的东西，便破涕而笑，心中的喜悦是非笔墨所能形容的。"], idioms: [{ name: "五花八门", explanation: "比喻事物繁多，变化莫测。", example: "筷子的设计五花八门，它不仅是吃饭夹菜的餐具，也是供人们欣赏的艺术品。" }, { name: "自然而然", explanation: "自由发展，必然这样。指非人力干预而自然如此。", example: "大家一看到年糕，心中自然而然地有喜庆之感。" }] },
+            { lessonNum: 4, title: "《宝贵的礼物》", sentences: ["她省吃俭用，存了半年的钱，给母亲买了一串珍珠项链。", "对方把我的书弄脏了，不但不道歉，反而趁我不注意的时候溜走了。", "人非圣贤，谁能无过。只要他肯认错，我们应该给他一个改过自新的机会。", "这串珍珠项链似乎也在提醒我要看管、收好我的东西，不能再丢三落四了，免得它们不翼而飞。"], idioms: [{ name: "人非圣贤，谁能无过", explanation: "指一般人犯错误是难免的。", example: "人非圣贤，谁能无过？你就原谅他这一次吧！" }, { name: "日思夜想", explanation: "形容思念极深。", example: "女儿数年没有消息，她日思夜想，最后病倒了！" }] },
+            { lessonNum: 5, title: "《小故事，大道理》", sentences: ["那个人顿时哑口无言，垂着头，羞愧地溜走了。", "他听了，气得一句话都说不出来，捂着脸哭了起来。", "在一片赞扬声中，他不禁飘飘然，骄傲起来。", "面对冷言冷语，他毫不在意，不慌不忙地走到赛场，准备比赛。"], idioms: [{ name: "理直气壮", explanation: "理由充分，言行因而有气势。", example: "他推倒了弟弟，却理直气壮地说：\"我没做错！\"" }, { name: "得意扬扬", explanation: "形容非常得意的样子。", example: "瞧他得意扬扬的，也不知他有什么高兴的事。" }, { name: "赞不绝口", explanation: "不住口地称赞。", example: "我得意扬扬地把成绩册拿给妈妈看，她看完后，赞不绝口。" }, { name: "读书破万卷，下笔如有神", explanation: "比喻要想写好文章，就要多读书。", example: "所谓\"读书破万卷，下笔如有神\"，我们应该养成阅读的好习惯。" }] },
+            { lessonNum: 6, title: "《精彩三国》", sentences: ["哥哥拍着胸口大喊：\"你吩咐的工作，我肯定准时完成，绝不拖延！\"", "在好奇心的驱使下，我大步流星地走上前看个究竟。", "小猫被打得遍体鳞伤，害怕得全身发抖。", "他们没有接受我的劝告，其中一个还狠狠地瞪了我一眼，说：\"狗咬耗子——多管闲事！\""], idioms: [{ name: "不谋而合", explanation: "指事先没有商量，彼此的意见、行动却完全一致。", example: "关于这次专题作业的主题，我和小明的想法不谋而合，所以我们很快就做出了决定。" }, { name: "一言为定", explanation: "意思是一句话说定了，不再更改，比喻说话算数，决不反悔。", example: "文华说：\"明天八点我们在图书馆门口见面，一言为定，不见不散。\"" }] },
+            { lessonNum: 7, title: "《世界走透透》", sentences: ["这种草药不仅对健康有益处，还可以治疗多种慢性疾病。", "听到小猫的哀叫声，我心头一酸，一股同情心油然而生。", "我小心翼翼地托起小猫的脚，然后涂上药。它痛得\"喵喵\"叫，整个身子缩成一团。", "所谓\"赠人玫瑰，手有余香\"。我很开心做了一件好事。如果每一个人都可以把爱心传递到世界的每一个角落，这世界就会变得更美好，更有人情味。"], idioms: [{ name: "震耳欲聋", explanation: "形容声音大得要把耳朵震聋了。", example: "爸爸说他小时候，在除夕夜总能听到震耳欲聋的鞭炮声，很有新年气氛。" }, { name: "名山大川", explanation: "著名的高山大河。", example: "他怀着一腔热情，游览了这个国家的名山大川。" }, { name: "流连忘返", explanation: "喜欢某种事物，玩乐时不愿离开。", example: "那个年轻人被这美丽的景色所吸引，而一直流连忘返。" }, { name: "大惊失色", explanation: "形容十分惊恐，连脸色都变了。", example: "他看了这篇报道后，顿时大惊失色。" }] },
+            { lessonNum: 8, title: "《新加坡的过去和现在》", sentences: ["还没走进厕所，小明就忍不住用手捏住鼻子。", "妈妈吩咐我把一个竹篮从楼上吊下来。", "他从口袋里掏出五分钱，放在出租连环画的书摊前，然后选了一本书，津津有味地读了起来。", "所谓\"当局者迷，旁观者清\"，我们在处理任何事情时，都不要忽视别人的意见。"], idioms: [{ name: "若有所思", explanation: "发愣不语，好像在想些什么似的。", example: "一到晚上，他总爱趴在窗前，凝望天空，一副若有所思的样子。" }, { name: "无忧无虑", explanation: "形容心情怡然自得。", example: "大家都盼望你生活幸福，无忧无虑。" }, { name: "左邻右舍", explanation: "泛指周围邻居。", example: "王伟考上了大学，左邻右舍都来向他祝贺。" }, { name: "栩栩如生", explanation: "指艺术形象非常逼真，如同活的一样。", example: "那个画家画什么都栩栩如生，真令人佩服！" }] },
+            { lessonNum: 9, title: "《说龙》", sentences: ["没有得到我的允许，谁也不能碰我买的风筝。", "龙象征吉祥和好运，因此皇帝的衣服和物品上都装饰有龙的图案。", "暴雨冲毁了农田，大地变成了一片汪洋，许多无辜的老百姓被淹死了。", "小明摆出一副毫不关心的样子，缓缓地说：\"这件事与我无关，你们别来烦我！\""], idioms: [{ name: "打抱不平", explanation: "帮助受欺压的人，打击强暴者。", example: "小萍虽然是个女孩子，却经常为弱小的同学打抱不平。" }, { name: "筋疲力尽", explanation: "形容非常疲乏，一点力气也没有了。", example: "逛了一天的公园，回到家我已经筋疲力尽了。" }, { name: "十万火急", explanation: "形容事情紧急到了极点。", example: "现在的情况十万火急，稍有不慎就会酿成大祸。" }, { name: "龙飞凤舞", explanation: "形容书法笔势有力，灵活舒展。", example: "他写的草书龙飞凤舞，不愧是位书法名家。" }, { name: "画龙点睛", explanation: "比喻写文章或讲话时，在关键处用几句话点明实质，使内容生动有力。", example: "这篇散文写的真好，尤其是最后这段，起到了画龙点睛的作用。" }, { name: "生龙活虎", explanation: "比喻活泼勇猛，生气勃勃。", example: "平日生龙活虎的小明，不知为什么今天垂头丧气。" }] },
+            { lessonNum: 10, title: "《走遍天下书为伴》", sentences: ["首10位申请者可获得由出版社赠送的一套书籍。", "发烧的时候，浑身滚烫，四肢无力，那种滋味真不好受。", "我像一匹饥饿的狼寻找食物一样，快速地在书架上找到那本书后，便全神贯注地读起来。", "一盘盘菜从我面前端过，飘来了一阵阵诱人的菜香，我的肚子开始\"捣蛋\"了，咕噜咕噜地叫起来。"], idioms: [{ name: "全神贯注", explanation: "把全部注意力集中在某件事上；形容精神高度集中。", example: "老师在讲课的时候，我们要全神贯注。" }, { name: "若无其事", explanation: "形容遇事镇定，不动声色；也形容不把事情放在心上。", example: "他听到那消息后，若无其事地笑了笑。" }, { name: "费尽心思", explanation: "挖空心思，想尽办法。", example: "他费尽心思想要讨好上司，结果还是碰了一鼻子灰。" }] },
+            { lessonNum: 11, title: "《拥抱未来》", sentences: ["雨丝密密斜斜地飘在空中，好像笼罩了一层薄雾。", "饱餐一顿后，他舔了舔嘴角，心满意足地揉了揉肚子。", "小明就像着了魔似的到处乱跑，一眨眼就不见踪影了。", "\"咦，他们俩在干什么？\"瞧见小明和小华躲在一旁窃窃私语，一个个问号浮现在我脑海里。"], idioms: [{ name: "窃窃私语", explanation: "私下里说悄悄话。", example: "在考场上，他们俩窃窃私语，被老师发现了。" }, { name: "垂头丧气", explanation: "形容情绪低落，精神沮丧。", example: "考试成绩不好，明华垂头丧气地走回家。" }] },
+            { lessonNum: 12, title: "《再见，亲爱的伙伴》", sentences: ["在这关键时刻，只要稍微犯一点儿错，就可能前功尽弃。", "第二届联欢晚会的节目很丰富，有钢琴独奏、诗歌朗诵、大合唱。", "\"天下无不散之筵席\"，很快地，我们即将小六毕业，跨入人生的另一个学习阶段。", "人生的道路并不平坦，就算遇到困难，我们也一定要坚持到底，要有恒心，绝对不可以半途而废。"], idioms: [{ name: "丈二和尚摸不着头脑", explanation: "指的是弄不清是怎么回事。", example: "爸爸一进家门，就对我喊道：\"你快说，今天你做了什么坏事？\"我听了犹如丈二和尚摸不着头脑，傻傻地看着他。" }, { name: "眉头一皱，计上心来", explanation: "形容略经思考，就有主意了。", example: "" }, { name: "神不知鬼不觉", explanation: "形容行动十分隐秘，谁也不能觉察。", example: "正当我急得团团转时，看到课室的后门开着，我眉头一皱，计上心来，走后门！这样可以趁老师没留意的时候偷偷溜进课室，岂不是神不知，鬼不觉？" }] }
+        ];
+
+        let currentLevel = 'p3';
+        let currentType = 'sentences';
+
+        function renderContent() {
+            const contentDiv = document.getElementById('content');
+            let data;
+            
+            switch(currentLevel) {
+                case 'p3': data = p3Data; break;
+                case 'p4': data = p4Data; break;
+                case 'p5': data = p5Data; break;
+                case 'p6': data = p6Data; break;
+                default: data = p3Data;
+            }
+
+            let html = '';
+            
+            if (currentType === 'sentences') {
+                data.forEach(lesson => {
+                    html += `
+                        <div class="lesson-section">
+                            <div class="lesson-title">${lesson.title}</div>
+                            <div class="section-title">句子练习</div>
+                            <ul class="sentence-list">
+                                ${lesson.sentences.map(s => `<li>${s}</li>`).join('')}
+                            </ul>
+                        </div>
+                    `;
+                });
+            } else {
+                data.forEach(lesson => {
+                    html += `
+                        <div class="lesson-section">
+                            <div class="lesson-title">${lesson.title}</div>
+                            <div class="section-title">成语学习</div>
+                            <table class="idiom-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%;">成语</th>
+                                        <th style="width: 35%;">解释</th>
+                                        <th style="width: 45%;">例句</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${lesson.idioms.map(idiom => `
+                                        <tr>
+                                            <td><span class="idiom-name">${idiom.name}</span></td>
+                                            <td><span class="idiom-explanation">${idiom.explanation}</span></td>
+                                            <td><span class="idiom-example">${idiom.example}</span></td>
+                                        </tr>
+                                    `).join('')}
+                                </tbody>
+                            </table>
+                        </div>
+                    `;
+                });
+            }
+
+            contentDiv.innerHTML = html;
+        }
+
+        // Event listeners for level buttons
+        document.querySelectorAll('.btn[data-level]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.btn[data-level]').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentLevel = this.dataset.level;
+                renderContent();
+            });
+        });
+
+        // Event listeners for content type buttons
+        document.querySelectorAll('.btn.content-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.btn.content-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentType = this.dataset.type;
+                renderContent();
+            });
+        });
+
+        // Initial render
+        renderContent();
+    </script>
+</body>
+</html>
