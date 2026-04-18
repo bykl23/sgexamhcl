@@ -41,6 +41,7 @@
 <body>
     <div class="controls">
         <span>📚 年级：</span>
+        <button id="btn-p4" onclick="setLevel('p4')">四年级 (P4)</button>
         <button id="btn-p6" onclick="setLevel('p6')" class="active">小六 (P6)</button>
         <span style="margin-left:8px">📖 类型：</span>
         <button id="btn-sentences" onclick="setType('sentences')" class="active">好词好句</button>
@@ -51,6 +52,16 @@
     <div id="content" class="wrapper"></div>
 
     <script>
+        const p4Data = [
+            { lessonNum: 2, title: "第二课", idioms: [{ name: "乌云密布", explanation: "满天都是乌云。", example: "我想去公园里玩，但是天空乌云密布，我只好待在家。" }, { name: "倾盆大雨", explanation: "雨大得像盆里的水直往下倒；形容雨大势急。", example: "天上乌云密布，一阵雷声过后，下起了倾盆大雨。" }, { name: "灵机一动", explanation: "急忙中转了一下念头；多指临时想出了一个办法。", example: "她灵机一动，想出了个好办法，把大家救出了山洞。" }] },
+            { lessonNum: 3, title: "第三课", idioms: [{ name: "无微不至", explanation: "形容关怀、照顾得非常周到细致。", example: "妈妈无微不至地照顾我们。" }] },
+            { lessonNum: 4, title: "第四课", idioms: [{ name: "亡羊补牢", explanation: "比喻出了问题以后想办法补救，可以防止继续受损失。", example: "学习中出现问题我们要及时补救，亡羊补牢，为时不晚。" }] },
+            { lessonNum: 5, title: "第五课", idioms: [{ name: "闷闷不乐", explanation: "形容心情烦闷，不舒畅。", example: "小明和朋友吵架后，一整天都闷闷不乐的。" }] },
+            { lessonNum: 6, title: "第六课", idioms: [{ name: "小心翼翼", explanation: "形容做事十分小心。", example: "她端着一碗热汤，小心翼翼地走向桌子。" }] },
+            { lessonNum: 7, title: "第七课", idioms: [{ name: "手舞足蹈", explanation: "手舞起来，脚也跳起来。形容兴高采烈的样子。", example: "孩子们收到礼物后开心得手舞足蹈。" }, { name: "彬彬有礼", explanation: "形容文雅而有礼貌。", example: "他待人彬彬有礼，大家都很喜爱他。" }, { name: "愁眉不展", explanation: "形容心事重重的样子。", example: "她愁眉不展，一定是遇到了困难。" }, { name: "尽心尽力", explanation: "比喻一个人做事非常地努力。", example: "老师尽心尽力地教导我们，我们充满感激。" }] },
+            { lessonNum: 8, title: "第八课", idioms: [{ name: "见义勇为", explanation: "认为是正义的举动就勇敢地去做。", example: "他见义勇为，帮助警察抓住了小偷。" }, { name: "马路如虎口", explanation: "形容马路上很危险，大家必须注意安全。", example: "\"马路如虎口\"，我们在马路上要时刻注意交通安全。" }] }
+        ];
+
         const p6Data = [
             { lessonNum: 1, title: "第一课《加油！加油！》", sentences: ["望着眼前的一幕，我的脑海中产生了一连串的疑问：我行吗？", "他发挥了不屈不挠的精神，一一克服了摆在他眼前的所有困难。", "在这么恶劣的环境下，他始终都不放弃，凭着顽强的意志，坚持到底。", "俗话说：天下无难事，只怕有心人。他让我明白了只要相信自己，就能把障碍移走，只要不放弃，凡事都能做到。"], idioms: [{ name: "不屈不挠", explanation: "形容意志坚强，永不屈服（挠：弯曲，比喻屈服）。", example: "只有不屈不挠的精神，才能战胜一切困难。" }, { name: "密密麻麻", explanation: "多而密的样子。", example: "广场上密密麻麻地挤满了人。" }] },
             { lessonNum: 2, title: "第二课《祖孙情》", sentences: ["祖父笑眯眯地对孙子说：\"你要牵着我的手，别走丢呀！\"", "他脸色苍白，冷得全身发抖，一连打了好几个喷嚏。", "看见小明故意把伞歪向他这边，他嘴唇微微抖动，双眼闪着泪光。", "这时，外面正下着倾盆大雨。风呼呼地吹着，雨哗哗地下着，密密的雨点在天地间织起了一张灰蒙蒙的大网。"], idioms: [{ name: "了如指掌", explanation: "形容对情况非常清楚，像指着自己的手掌给别人看。", example: "他很喜欢翻阅汽车杂志，对各厂牌的车了如指掌，是个标准的汽车迷。" }, { name: "乌云密布", explanation: "满天都是乌云。", example: "我想去公园里玩，但是天空乌云密布，我只好待在家。" }, { name: "倾盆大雨", explanation: "雨大得像盆里的水直往下倒；形容雨大势急。", example: "天上乌云密布，一阵雷声过后，下起了倾盆大雨。" }, { name: "灵机一动", explanation: "急忙中转了一下念头；多指临时想出了一个办法。", example: "她灵机一动，想出了个好办法，把大家救出了山洞。" }] },
@@ -85,13 +96,17 @@
 
         function renderContent() {
             const contentDiv = document.getElementById('content');
-            const data = p6Data;
+            const data = currentLevel === 'p4' ? p4Data : p6Data;
             let html = '';
 
             if (currentType === 'sentences') {
                 data.forEach((lesson, index) => {
                     html += '<div class="lesson-page"><div class="lesson-title">' + lesson.title + '</div><div class="section-title">好词好句</div><ul class="sentence-list">';
-                    lesson.sentences.forEach(s => { html += '<li>' + s + '</li>'; });
+                    if (lesson.sentences) {
+                        lesson.sentences.forEach(s => { html += '<li>' + s + '</li>'; });
+                    } else {
+                        html += '<li>暂无内容</li>';
+                    }
                     html += '</ul></div>';
                 });
             } else {
