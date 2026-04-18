@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-SG">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>新加坡高级华文句子与成语练习 (P3-P6)</title>
+  <style>
+    :root { --primary: #2c3e50; --accent: #3498db; --border: #bdc3c7; --bg: #f8f9fa; }
+    body { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif; margin: 0; padding: 15px; background: #e9ecef; color: #333; line-height: 1.4; }
+    .wrapper { max-width: 210mm; margin: 0 auto; background: white; padding: 15mm 18mm; box-shadow: 0 4px 12px rgba(0,0,0,0.1); min-height: 297mm; }
+    .controls { text-align: center; margin-bottom: 15px; padding: 10px; background: #34495e; border-radius: 8px; color: white; display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; align-items: center; }
+    .controls button { background: #5dade2; color: white; border: none; padding: 7px 12px; margin: 2px; border-radius: 5px; cursor: pointer; font-size: 13px; transition: 0.2s; }
+    .controls button:hover { background: #3498db; }
+    .controls button.active { background: #1abc9c; font-weight: bold; box-shadow: 0 2px 4px rgba(0,0,0,0.3); }
+    .print-btn { background: #e74c3c !important; font-weight: bold; }
+    .hint { width: 100%; font-size: 11px; margin-top: 4px; opacity: 0.8; }
+    .lesson-page { break-after: page; page-break-after: always; margin-bottom: 10px; padding-bottom: 8px; border-bottom: 1px dashed #ccc; }
+    .lesson-page:last-child { border: none; margin: 0; }
+    .lesson-title { font-size: 14px; font-weight: bold; margin: 0 0 8px 0; padding: 5px 8px; background: var(--primary); color: white; border-radius: 4px; display: inline-block; }
+    .section-title { font-size: 13px; font-weight: 600; margin: 10px 0 5px 0; padding: 4px 6px; background: #ecf0f1; color: var(--primary); border-radius: 3px; border-left: 3px solid var(--accent); }
+    table { width: 100%; border-collapse: collapse; margin-bottom: 10px; font-size: 12px; }
+    th, td { border: 1px solid var(--border); padding: 6px 7px; text-align: left; vertical-align: middle; }
+    th { background: var(--bg); font-weight: 600; }
+    .sentence-row td { font-size: 13px; line-height: 1.5; }
+    .idiom-name { font-weight: 600; color: var(--primary); }
+    .idiom-exp { color: #555; font-style: italic; }
+    .idiom-example { color: #666; }
+    @media print {
+      @page { size: A4; margin: 8mm 12mm 8mm 12mm; }
+      body { background: white; padding: 0; }
+      .wrapper { box-shadow: none; padding: 0; max-width: 100%; }
+      .controls { display: none !important; }
+      .lesson-page { break-after: page; margin: 0; padding: 4mm 0; border: none; }
+      .lesson-title, .section-title { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      th { background: #f0f0f0 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+      table { break-inside: avoid; }
+    }
+  </style>
+</head>
+<body>
+  <div class="controls">
+    <span>📚 年级：</span>
+    <button id="btn-p3" onclick="set('p3')">小三 (P3)</button>
+    <button id="btn-p4" onclick="set('p4')">小四 (P4)</button>
+    <button id="btn-p5" onclick="set('p5')">小五 (P5)</button>
+    <button id="btn-p6" onclick="set('p6')">小六 (P6)</button>
+    <button class="print-btn" onclick="window.print()">🖨️ 打印当前页面为 PDF</button>
+    <p class="hint">💡 打印设置：勾选"背景图形"，纸张 A4，边距"默认/最小"</p>
+  </div>
+  <div id="content" class="wrapper"></div>
+  
+<script>
+const S = {
+  p3: [
+    {t:"第一课 美丽的愿望", sentences:["小明有一个美丽的愿望，他将来想成为一名军人。","每天放学后，他总是努力练习跑步，希望保卫国家。","老师鼓励他说：'只要争取，你的愿望一定会实现！'"], idioms:[{name:"努力", explanation:"尽力去做事情。", example:"他努力学习，终于考上了好学校。"}]},
+    {t:"第二课 我的朋友和家人", sentences:["我的好朋友胖胖的，脸圆圆的，非常有趣。","叔叔有些问题总是相信一定可以解决。","阿姨后退一步，笑着说：'别担心！'"], idioms:[{name:"有趣", explanation:"有意思，引人发笑。", example:"这个故事真有趣，大家都笑了。"}]},
+    {t:"第三课 我的好伙伴", sentences:["我的蓝色闹钟是个好伙伴，每天准时叫我起床。","它背着手表的样子真可爱，陪伴我度过每一天。","我要改掉迟到的习惯，不再让它失望。"], idioms:[{name:"准时", explanation:"按照规定的时间。", example:"他每天准时上学，从不迟到。"}]},
+    {t:"第四课 奇妙的变化", sentences:["绿豆发芽了，细细的根越来越粗。","黑色的小蝌蚪摆动两条后腿，已经变成青蛙了。","孩子们喊着：'看！乌龟在哪里？'"], idioms:[{name:"变化", explanation:"事物产生新的状况。", example:"家乡的变化真大啊！"}]},
+    {t:"第五课 难忘的一天", sentences:["傍晚，爷爷跟着我去逛街，买了一束鲜花。","刚刚上完课，我就准备扫地收拾房间。","几月几号是演艺活动？我要付钱买票。"], idioms:[{name:"难忘", explanation:"很难忘记。", example:"这是我最难忘的一天。"}]},
+    {t:"第六课 是我不好", sentences:["我不应该扔垃圾，犯了错要承认。","突然撞倒同学，我立刻说对不起。","怎么跌倒受伤了？学校老师马上来处理。"], idioms:[{name:"原谅", explanation:"宽恕别人的过错。", example:"请原谅我这一次吧！"}]},
+    {t:"第七课 留张便条", sentences:["邻居生病休息，我赶快留张便条问候。","轻轻地脱鞋，不要碰到地板发出声音。","乖孩子搬动椅子时总是小心翼翼。"], idioms:[{name:"赶快", explanation:"抓紧时间，加快速度。", example:"赶快回家吧，要下雨了！"}]},
+    {t:"第八课 我真能干", sentences:["我需要硬纸板做贺卡，然后涂上颜色。","接着折衣服、晒衣服，虽然累得满头大汗，但很容易完成。","转盘歪歪的，乱七八糟的东西被我收拾好了。"], idioms:[{name:"能干", explanation:"有才能，会做事。", example:"她真是个能干的孩子。"}]},
+    {t:"第九课 我有办法", sentences:["小象用鼻子救人，大家夸奖它是神童。","古时候有人称象，往左装满石头就能称重。","考试时拉一下沉船，重量就测量出来了。"], idioms:[{name:"办法", explanation:"处理事情的方法。", example:"他总有办法解决问题。"}]},
+    {t:"第十课 我住的地方真干净", sentences:["因为有人扔垃圾，引来蚊虫破坏环境。","周末我决定仔细清洗厕所，摘花装饰。","爱好整洁的人打招呼时总是面带微笑。"], idioms:[{name:"干净", explanation:"没有尘土、杂质。", example:"房间打扫得很干净。"}]},
+    {t:"第十一课 环保小天使", sentences:["我认为浪费是不好的，应该使用环保袋。","如果购物时尽一份力，废物也能利用。","报纸和瓶子放进回收箱，星期一对环境有益。"], idioms:[{name:"环保", explanation:"保护环境。", example:"我们要养成环保的好习惯。"}]},
+    {t:"第十二课 我爱新加坡", sentences:["亮晶晶的狮子像各种各样的礼物。","国庆日，印度人唱国歌，竖起大拇指。","东海岸野餐时，脚踏车穿过老虎和狮子的图案。"], idioms:[{name:"各种各样", explanation:"种类繁多。", example:"商店里有各种各样的商品。"}]},
+    {t:"第十三课 动物世界", sentences:["沿着竹林找到山顶，小组必须完成任务。","虽然仍然急忙，但我们讨论后决定第一组获胜。","大灰狼在山洞里，养虾的水池边有森林。"], idioms:[{name:"必须", explanation:"一定要。", example:"你必须按时完成作业。"}]},
+    {t:"第十四课 奇妙的动物", sentences:["兔子软软的，眼睛圆圆的，却是灰色的。","它饿了，喂食萝卜后慢慢散步。","尾巴足够长，躺着吃肚子饱了。"], idioms:[{name:"奇妙", explanation:"神奇巧妙。", example:"大自然真奇妙！"}]},
+    {t:"第十五课 华文真有趣", sentences:["小偷从窗户逃走，吓得冒冷汗发抖。","假期参加礼堂活动，简单座位忍不住哈哈大笑。","谁钻到花丛里？蜜蜂惊吓了大腿疼痛的人。"], idioms:[{name:"有趣", explanation:"有意思，好玩。", example:"华文课真有趣！"}]},
+    {t:"第十六课 学习要认真", sentences:["吴老师照顾宠物，俩人结果认识数学。","代替念书不敢抬头，吹泡泡滑轮跳舞。","却传来说：'欺负别人是不对的！'"], idioms:[{name:"认真", explanation:"严肃对待，不马虎。", example:"学习要认真，不能偷懒。"}]},
+    {t:"第十七课 好孩子", sentences:["弄掉裙子的牛油，倒咖啡藏底下。","失去铁块金钱，游泳比赛试卷签名。","等消息百千万减掉，打算检查题目。"], idioms:[{name:"好孩子", explanation:"懂事、听话的孩子。", example:"他是个好孩子，经常帮助同学。"}]}
+  ],
+  p4: [
+    {t:"第一课 一起看电视", sentences:["新闻说全岛观众都看到了精彩的舞蹈表演。","刚刚内外建议共赏，忍不住欢呼起来。","藏着秘密的节目让大家看得入迷。"], idioms:[{name:"精彩", explanation:"出色，优美。", example:"这场表演真精彩！"}]},
+    {t:"第二课 我们是兄弟姐妹", sentences:["苹果词语鱼丸打鼓，担心害怕乌云密布。","递给姑姑靠得紧紧的，忽然灵机一动挤在一起。","紧接表示暖暖的情谊，我们是相亲相爱的兄弟姐妹。"], idioms:[{name:"灵机一动", explanation:"突然想出好主意。", example:"他灵机一动，想出了好办法。"}]},
+    {t:"第三课 妈妈，对不起", sentences:["街上警察煮饭补习，半夜流下眼泪睁开眼睛。","一碗云吞面脾气尊敬长辈，舍不得后悔迷上网络游戏。","我对妈妈说：'对不起，我不该惹您生气！'"], idioms:[{name:"后悔", explanation:"事后懊悔。", example:"他现在后悔当初没有好好学习。"}]},
+    {t:"第四课 今天我值日", sentences:["值日生插队要保持安静，注意安全皱着眉头。","归还碗盘干净的食堂难为情，影响责任感提醒由于保证。","我保证以后不再犯同样的错误。"], idioms:[{name:"责任感", explanation:"对自己应尽责任的认识。", example:"他很有责任感，工作认真负责。"}]},
+    {t:"第五课 我不怕打针", sentences:["痛在课室吃药打针，闭眼戴眼镜伸出手。","视力变差骗结束继续，闷闷不乐建议胆小。","其实打针不可怕，我要勇敢面对！"], idioms:[{name:"胆小", explanation:"胆子小，害怕。", example:"别太胆小，要勇敢尝试。"}]},
+    {t:"第六课 我要参加什么活动呢", sentences:["久功夫辛苦欢迎童子军华乐团。","身体健康加紧训练鼓励许多丰富。","所以幸运分享，我要参加有意义的活动。"], idioms:[{name:"鼓励", explanation:"激发，勉励。", example:"老师鼓励学生积极发言。"}]},
+    {t:"第七课 他的脸红了", sentences:["人群车厢乘客企鹅馆摇摆不许乱抢。","道歉劝告拼命批评秩序耐心。","在公共场所要遵守秩序，他的脸红是因为羞愧。"], idioms:[{name:"秩序", explanation:"有条理、不混乱的情况。", example:"大家要排队，保持良好秩序。"}]},
+    {t:"第八课 马路如虎口", sentences:["车祸司机出血医院一辆汽车被困车里。","顺利另外了解表扬交通规则见义勇为。","过马路要小心，遵守交通规则很重要。"], idioms:[{name:"见义勇为", explanation:"看到正义的事就勇敢地去做。", example:"他见义勇为，救了落水的小孩。"}]},
+    {t:"第九课 爱心无障碍", sentences:["组屋熟食中心居民饮料糖果炸鸡。","告示牌遍而指着清楚讨厌其中。","社区充满爱心，邻里之间互相帮助。"], idioms:[{name:"爱心", explanation:"关怀爱护他人的心意。", example:"她是个有爱心的人，经常帮助弱者。"}]}
+  ],
+  p5: [
+    {t:"第一课 到户外去", sentences:["露营安排野外探险营火会攀岩营地。","物品清单卫生用品内衣内裤袜子睡袋手电筒。","防蚊用品注意事项防止期间单独行动禁止贵重保管。","竞赛同伴绑的结结实实齐心协力配合住处。","不管三七二十一狼吞虎咽精光一顿饭红烧排骨。","一望无际清凉迎面椰树黄昏景色闪着光芒。"], idioms:[{name:"齐心协力", explanation:"大家一心一意，共同努力。", example:"同学们齐心协力完成了任务。"}, {name:"狼吞虎咽", explanation:"形容吃东西又猛又急。", example:"他饿极了，狼吞虎咽地吃着饭。"}]},
+    {t:"第二课 身体会说话", sentences:["测试正确号码填写格子强烈昏暗明亮。","平板电脑距离定期户外用心光线充足。","而且隔开放松惨痛目不转睛盯着无精打采。","头疼咳嗽诊所常客发黑下降模糊瞎子。","抛弃痛苦伤害，我们要爱护自己的身体。"], idioms:[{name:"目不转睛", explanation:"眼睛一动不动地盯着看。", example:"他目不转睛地看着魔术表演。"}, {name:"无精打采", explanation:"精神不振，提不起劲头。", example:"他今天无精打采的，好像生病了。"}]},
+    {t:"第三课 懂事的你", sentences:["营养材料鸡蛋紫菜调味料盐形状去皮搅拌锅。","作为嘴巴惊喜可贵沉默异口同声当然。","神气十足左顾右盼谈论聚会响亮鸦雀无声。","犯错误似的足足一分钟七嘴八舌身份证。","语重心长养育祝福烦恼安慰爱惜劳累回想。","父母养育我们不容易，要懂得感恩。"], idioms:[{name:"异口同声", explanation:"大家说同样的话。", example:"同学们异口同声地回答：'知道！'"}, {name:"鸦雀无声", explanation:"形容非常安静。", example:"老师进来后，教室里鸦雀无声。"}, {name:"七嘴八舌", explanation:"形容人多口杂，议论纷纷。", example:"大家七嘴八舌地讨论着这个问题。"}, {name:"语重心长", explanation:"话语恳切而有分量，情意深长。", example:"老师语重心长地教导我们要努力学习。"}]},
+    {t:"第四课 分享是快乐的", sentences:["捐款查看包装袋确保有效期完好肉类存放冷冻。","新鲜食品蔬菜果汁速冻水饺汤圆酒类蛋糕饼干。","从前村子自私互不来往陌生人村民改变水井点火。","围观愁眉苦脸撒腿就跑妻子夫妻捧缺少一溜烟。","肉丸鲜美聊天愉快感受幸福争相邀请宁静蛋类熟食妇女。","分享让快乐加倍，我们要学会与他人分享。"], idioms:[{name:"愁眉苦脸", explanation:"形容忧愁苦恼的神情。", example:"他愁眉苦脸地说考试没考好。"}, {name:"撒腿就跑", explanation:"拔腿就跑，形容跑得很快。", example:"小狗看到主人撒腿就跑过来。"}]},
+    {t:"第五课 我闯祸了", sentences:["受欢迎程度根据内容打分注重个人衣着整洁积极。","班级逗矛盾解决坏话遇到抱怨骄傲打断人气旺。","提升空间闯祸当成珍宝爱惜碎片脑海出现愤怒。","逃离神情往常严肃假装不禁微微呼吸急促加速。","脑袋空白结结巴巴怀疑避开火辣难受一分一秒无法忍受。","温和珍贵勇气更加，做错事要勇于承认。"], idioms:[{name:"结结巴巴", explanation:"说话不流利，磕磕绊绊。", example:"他紧张得说话结结巴巴的。"}]},
+    {t:"第六课 我的东西找到了", sentences:["寻找小贩中心丢失银色车资卡一叠钞票硬币联系招领。","早晨员工收银员失主认领离银行每当天色阴沉沉。","只顾摇晃稳争先恐后高声情景呆住傻傻地如何回过神。","阻拦不料不约而同喜出望外连声麻烦数一数露出不解。","神情便利店诚实善良回忆，拾金不昧的精神值得学习。"], idioms:[{name:"争先恐后", explanation:"争着向前，唯恐落后。", example:"同学们争先恐后地报名参加比赛。"}, {name:"不约而同", explanation:"事先没有约定而彼此一致。", example:"大家不约而同地鼓起掌来。"}, {name:"喜出望外", explanation:"遇到意外的喜事而感到特别高兴。", example:"听到这个好消息，他喜出望外。"}]},
+    {t:"第七课 一千桶水", sentences:["海洋鼻孔头顶浮出水面呼吸水柱皮肤一层厚保温。","大多深海浅海无意间拍打死团团转泼水大概喘气湿透。","抽水机载涨潮一波一波激动渐渐地漫过绝望打过来。","悬着徘徊道谢依依不舍道别消失海平面穿透来来回回。","到底有救波浪，坚持就是胜利。"], idioms:[{name:"团团转", explanation:"形容十分焦急或忙碌的样子。", example:"他急得团团转，不知该怎么办。"}, {name:"依依不舍", explanation:"形容留恋，不忍分离。", example:"毕业典礼上，同学们依依不舍地告别。"}]},
+    {t:"第八课 和时间赛跑", sentences:["陆地恐龙灭绝汉字发明飞行天才百分之一灵感汗水。","世纪年代制造美国太空人月球足迹网络人类遍布未来。","去世悲伤瘦弱身影浮现永远世上一切事物曾经年龄。","光阴似箭一寸光阴一寸金每当滴答钟声匆匆一眨眼幼小。","想法输上气不接下气禁不住赢此后节省计划井井有条似乎作用。","珍惜赛跑难过脑海睡着光阴露着宝贵，时间是最宝贵的财富。"], idioms:[{name:"光阴似箭", explanation:"形容时间过得极快。", example:"光阴似箭，转眼我们就毕业了。"}, {name:"一寸光阴一寸金", explanation:"比喻时间十分宝贵。", example:"一寸光阴一寸金，我们要珍惜时间。"}, {name:"井井有条", explanation:"形容条理分明，整齐有序。", example:"她把房间收拾得井井有条。"}]},
+    {t:"第九课 很久很久以前", sentences:["露天增添举办花木兰兰花成人儿童票价免费订票网站领取矿泉水。","简介古时候装扮父亲打仗从军老爹军令边关杀敌士兵上阵吃苦。","孝心主意家乡攻敌列队烈日叮风吹雨打狂风雪花战场败得胜将军。","故乡百姓相迎英雄保家卫国攻打胜仗打败第一场一身可惜退场。","母亲进场免礼娘女扮男装放心金子银子多谢各位开玩笑当年剧终。","花木兰代父从军的故事流传千古。"], idioms:[{name:"风吹雨打", explanation:"遭受风雨的摧残，比喻经受磨难。", example:"花儿经过风吹雨打，开得更鲜艳了。"}, {name:"保家卫国", explanation:"保卫家乡和祖国。", example:"战士们誓死保家卫国。"}]},
+    {t:"第十课 成长的烦恼", sentences:["成长电邮网络平台交流热线地址网址痘痘嘲笑背后指指点点隐形。","上瘾时时刻刻控制唠叨碟童年往事小心翼翼遮盖夹住恶作剧发热。","丰盛取笑腰吃力鼻子一酸农夫惭愧攀比感恩拥有原因。","成长过程中会遇到各种烦恼，要学会面对和解决。"], idioms:[{name:"指指点点", explanation:"在旁边挑剔毛病，说长道短。", example:"不要对别人的工作指指点点。"}, {name:"小心翼翼", explanation:"形容举动十分谨慎，丝毫不敢疏忽。", example:"他小心翼翼地捧着花瓶。"}]},
+    {t:"第十一课 同学之间", sentences:["象棋招生初级中级至对象零起点完成课程基本知识收费报名截止。","有限尽早详细邮区公共假日打架胸口躲闪扑一团面子扭打面对面。","彼此气鼓鼓通红衬衫扣子撕肩膀恨狠狠地无聊反正不如当时。","同学之间要和睦相处，互相帮助。"], idioms:[{name:"面对面", explanation:"脸对着脸，亲自接触。", example:"他们面对面地交谈起来。"}]},
+    {t:"第十二课 新加坡，我为你骄傲", sentences:["连接评佳奖项本地著名手册开门夜间野生滨海湾刺巷唯一齐声自豪。","兴高采烈盼望庆典宽阔浮动舞台队伍场地战斗机飞越呈献激动人心。","达到降落夜幕降临献上大型歌舞沉浸燃放五彩缤纷烟花气氛高潮无比骄傲渐渐地。","新加坡是我们的家园，我们要为它感到骄傲。"], idioms:[{name:"兴高采烈", explanation:"形容兴致高，情绪热烈。", example:"孩子们兴高采烈地去春游。"}, {name:"五彩缤纷", explanation:"形容色彩繁多艳丽。", example:"节日的广场五彩缤纷，非常美丽。"}]},
+    {t:"第十三课 汉字王国", sentences:["记录汉语构成古老历史刻骨头甲骨文产生包括统计人数亿万。","优美一门独特艺术甲乙丙大约手下不仅建造叹了一口气墨众人。","胸有成竹窄派人肯定恍然大悟佩服理由违抗命令询问行李可惜根据怀疑。","汉字是中华文化的瑰宝，我们要认真学习。"], idioms:[{name:"胸有成竹", explanation:"比喻做事之前已经有通盘的考虑。", example:"他对这次考试胸有成竹。"}, {name:"恍然大悟", explanation:"一下子明白过来。", example:"听了老师的解释，他才恍然大悟。"}]},
+    {t:"第十四课 老师，谢谢您", sentences:["辛勤照亮甲班罗老师顽皮偶像诗培育丙班师父乙班宣布加倍丁班。","一所往往实际上祈祷混了过去一堂自然偏偏明明发烫额头恨不得。","陆陆续续独自委屈涌上心头温暖温柔凡是约定从此恢复自信心照不宣。","遇到困难如何内容敬爱积极，老师的恩情我们永远铭记。"], idioms:[{name:"陆陆续续", explanation:"先后相继，时断时续。", example:"同学们陆陆续续地来到教室。"}, {name:"心照不宣", explanation:"彼此心里明白，不必明说。", example:"他们对这件事心照不宣。"}]},
+    {t:"第十五课 想当一棵树", sentences:["雨树栽种闭合青龙木散发淡淡的扁扁的乳白浓炮弹树四周体验。","是否腐烂编号大话闲聊哇哇叫姿态笔直站立下巴挺慷慨顶着阴凉。","粗壮茂密窝幽默枯叶，树木为我们提供氧气，要爱护它们。"], idioms:[{name:"哇哇叫", explanation:"大声叫喊。", example:"小鸟在树上哇哇叫。"}]},
+    {t:"第十六课 语言的力量", sentences:["地球一滴水资源进入一粒米粮食生命减少污染和谐共处博物馆。","语言力量繁华街头失明台阶尽管视而不见熟悉迫不及待几乎奇妙。","浓厚美好翩翩起舞夕阳陶醉惋惜冷漠无情，语言能给人带来温暖和力量。"], idioms:[{name:"视而不见", explanation:"看见了就像没看见一样，形容不关心或不注意。", example:"他对地上的垃圾视而不见。"}, {name:"迫不及待", explanation:"急迫得不能再等待。", example:"他迫不及待地打开礼物。"}, {name:"翩翩起舞", explanation:"形容轻快地跳舞。", example:"蝴蝶在花丛中翩翩起舞。"}]},
+    {t:"第十七课 世界那么大", sentences:["主要中国福建坚固和室传统建筑搭建地震造成伤亡欧洲古代贵族居住围墙敌人。","高脚屋东南亚通风防潮爬虫雨季淹水树屋盖在树上野兽攻击神奇地区气温零下五十度。","白天完全处在黑暗根本天寒地冻恶劣生存祖先移居外表体形打猎获取捕捉棍子保暖。","妇女宽大雪屋阻挡刺骨即使暖和通常驾车外出工具取代行驶避开减少进入捕鱼地球尽管。","世界各地的民居各有特色，反映了当地的自然环境和文化。"], idioms:[{name:"天寒地冻", explanation:"形容天气极为寒冷。", example:"北方冬天，天寒地冻，雪花纷飞。"}]}
+  ],
+  p6: [
+    {t:"第 1 课《加油！加油！》", sentences:["望着眼前的一幕，我的脑海中产生了一连串的疑问：我行吗？","他发挥了不屈不挠的精神，一一克服了摆在他眼前的所有困难。","在这么恶劣的环境下，他始终都不放弃，凭着顽强的意志，坚持到底。","俗话说：天下无难事，只怕有心人。他让我明白了只要相信自己，就能把障碍移走，只要不放弃，凡事都能做到。"], idioms:[{name:"不屈不挠", explanation:"形容意志坚强，永不屈服（挠：弯曲，比喻屈服）。", example:"只有不屈不挠的精神，才能战胜一切困难。"}, {name:"密密麻麻", explanation:"多而密的样子。", example:"广场上密密麻麻地挤满了人。"}]},
+    {t:"第 2 课《祖孙情》", sentences:["祖父笑眯眯地对孙子说：\"你要牵着我的手，别走丢呀！\"", "他脸色苍白，冷得全身发抖，一连打了好几个喷嚏。","看见小明故意把伞歪向他这边，他嘴唇微微抖动，双眼闪着泪光。","这时，外面正下着倾盆大雨。风呼呼地吹着，雨哗哗地下着，密密的雨点在天地间织起了一张灰蒙蒙的大网。"], idioms:[{name:"了如指掌", explanation:"形容对情况非常清楚，像指着自己的手掌给别人看。", example:"他很喜欢翻阅汽车杂志，对各厂牌的车了如指掌，是个标准的汽车迷。"}]},
+    {t:"第 3 课《美食小侦探》", sentences:["除了家常小菜外，我还特别喜欢这间餐馆的一些菜肴，例如酸辣汤、清炒豆苗、香脆炸虾等。","中午，太阳像个大火球，炙烤着大地。他热得满头大汗，头上都冒出蒸气来。","东西不见了，我懊悔万分，眼泪忍不住夺眶而出。","我见到失而复得的东西，便破涕而笑，心中的喜悦是非笔墨所能形容的。"], idioms:[{name:"五花八门", explanation:"比喻事物繁多，变化莫测。", example:"筷子的设计五花八门，它不仅是吃饭夹菜的餐具，也是供人们欣赏的艺术品。"}, {name:"自然而然", explanation:"自由发展，必然这样。指非人力干预而自然如此。", example:"大家一看到年糕，心中自然而然地有喜庆之感。"}]},
+    {t:"第 4 课《宝贵的礼物》", sentences:["她省吃俭用，存了半年的钱，给母亲买了一串珍珠项链。","对方把我的书弄脏了，不但不道歉，反而趁我不注意的时候溜走了。","人非圣贤，谁能无过。只要他肯认错，我们应该给他一个改过自新的机会。","这串珍珠项链似乎也在提醒我要看管、收好我的东西，不能再丢三落四了，免得它们不翼而飞。"], idioms:[{name:"人非圣贤，谁能无过", explanation:"指一般人犯错误是难免的。", example:"人非圣贤，谁能无过？你就原谅他这一次吧！"}, {name:"日思夜想", explanation:"形容思念极深。", example:"女儿数年没有消息，她日思夜想，最后病倒了！"}]},
+    {t:"第 5 课《小故事，大道理》", sentences:["那个人顿时哑口无言，垂着头，羞愧地溜走了。","他听了，气得一句话都说不出来，捂着脸哭了起来。","在一片赞扬声中，他不禁飘飘然，骄傲起来。","面对冷言冷语，他毫不在意，不慌不忙地走到赛场，准备比赛。"], idioms:[{name:"理直气壮", explanation:"理由充分，言行因而有气势。", example:"他推倒了弟弟，却理直气壮地说：'我没做错！'"}, {name:"得意扬扬", explanation:"形容非常得意的样子。", example:"瞧他得意扬扬的，也不知他有什么高兴的事。"}, {name:"赞不绝口", explanation:"不住口地称赞。", example:"我得意扬扬地把成绩册拿给妈妈看，她看完后，赞不绝口。"}, {name:"读书破万卷，下笔如有神", explanation:"比喻要想写好文章，就要多读书。", example:"所谓'读书破万卷，下笔如有神'，我们应该养成阅读的好习惯。"}]},
+    {t:"第 6 课《精彩三国》", sentences:["哥哥拍着胸口大喊：'你吩咐的工作，我肯定准时完成，绝不拖延！'", "在好奇心的驱使下，我大步流星地走上前看个究竟。","小猫被打得遍体鳞伤，害怕得全身发抖。","他们没有接受我的劝告，其中一个还狠狠地瞪了我一眼，说：'狗咬耗子——多管闲事！'"], idioms:[{name:"不谋而合", explanation:"指事先没有商量，彼此的意见、行动却完全一致。", example:"关于这次专题作业的主题，我和小明的想法不谋而合，所以我们很快就做出了决定。"}, {name:"一言为定", explanation:"意思是一句话说定了，不再更改，比喻说话算数，决不反悔。", example:"文华说：'明天八点我们在图书馆门口见面，一言为定，不见不散。'"}]},
+    {t:"第 7 课《世界走透透》", sentences:["这种草药不仅对健康有益处，还可以治疗多种慢性疾病。","听到小猫的哀叫声，我心头一酸，一股同情心油然而生。","我小心翼翼地托起小猫的脚，然后涂上药。它痛得'喵喵'叫，整个身子缩成一团。","所谓'赠人玫瑰，手有余香'。我很开心做了一件好事。如果每一个人都可以把爱心传递到世界的每一个角落，这世界就会变得更美好，更有人情味。"], idioms:[{name:"震耳欲聋", explanation:"形容声音大得要把耳朵震聋了。", example:"爸爸说他小时候，在除夕夜总能听到震耳欲聋的鞭炮声，很有新年气氛。"}, {name:"名山大川", explanation:"著名的高山大河。", example:"他怀着一腔热情，游览了这个国家的名山大川。"}, {name:"流连忘返", explanation:"喜欢某种事物，玩乐时不愿离开。", example:"那个年轻人被这美丽的景色所吸引，而一直流连忘返。"}, {name:"大惊失色", explanation:"形容十分惊恐，连脸色都变了。", example:"他看了这篇报道后，顿时大惊失色。"}]},
+    {t:"第 8 课《新加坡的过去和现在》", sentences:["还没走进厕所，小明就忍不住用手捏住鼻子。","妈妈吩咐我把一个竹篮从楼上吊下来。","他从口袋里掏出五分钱，放在出租连环画的书摊前，然后选了一本书，津津有味地读了起来。","所谓'当局者迷，旁观者清'，我们在处理任何事情时，都不要忽视别人的意见。"], idioms:[{name:"若有所思", explanation:"发愣不语，好像在想些什么似的。", example:"一到晚上，他总爱趴在窗前，凝望天空，一副若有所思的样子。"}, {name:"无忧无虑", explanation:"形容心情怡然自得。", example:"大家都盼望你生活幸福，无忧无虑。"}, {name:"左邻右舍", explanation:"泛指周围邻居。", example:"王伟考上了大学，左邻右舍都来向他祝贺。"}, {name:"栩栩如生", explanation:"指艺术形象非常逼真，如同活的一样。", example:"那个画家画什么都栩栩如生，真令人佩服！"}]},
+    {t:"第 9 课《说龙》", sentences:["没有得到我的允许，谁也不能碰我买的风筝。","龙象征吉祥和好运，因此皇帝的衣服和物品上都装饰有龙的图案。","暴雨冲毁了农田，大地变成了一片汪洋，许多无辜的老百姓被淹死了。","小明摆出一副毫不关心的样子，缓缓地说：'这件事与我无关，你们别来烦我！'"], idioms:[{name:"打抱不平", explanation:"帮助受欺压的人，打击强暴者。", example:"小萍虽然是个女孩子，却经常为弱小的同学打抱不平。"}, {name:"筋疲力尽", explanation:"形容非常疲乏，一点力气也没有了。", example:"逛了一天的公园，回到家我已经筋疲力尽了。"}, {name:"十万火急", explanation:"形容事情紧急到了极点。", example:"现在的情况十万火急，稍有不慎就会酿成大祸。"}, {name:"龙飞凤舞", explanation:"形容书法笔势有力，灵活舒展。", example:"他写的草书龙飞凤舞，不愧是位书法名家。"}, {name:"画龙点睛", explanation:"比喻写文章或讲话时，在关键处用几句话点明实质，使内容生动有力。", example:"这篇散文写的真好，尤其是最后这段，起到了画龙点睛的作用。"}, {name:"生龙活虎", explanation:"比喻活泼勇猛，生气勃勃。", example:"平日生龙活虎的小明，不知为什么今天垂头丧气。"}]},
+    {t:"第 10 课《走遍天下书为伴》", sentences:["首 10 位申请者可获得由出版社赠送的一套书籍。","发烧的时候，浑身滚烫，四肢无力，那种滋味真不好受。","我像一匹饥饿的狼寻找食物一样，快速地在书架上找到那本书后，便全神贯注地读起来。","一盘盘菜从我面前端过，飘来了一阵阵诱人的菜香，我的肚子开始'捣蛋'了，咕噜咕噜地叫起来。"], idioms:[{name:"全神贯注", explanation:"把全部注意力集中在某件事上；形容精神高度集中。", example:"老师在讲课的时候，我们要全神贯注。"}, {name:"若无其事", explanation:"形容遇事镇定，不动声色；也形容不把事情放在心上。", example:"他听到那消息后，若无其事地笑了笑。"}, {name:"费尽心思", explanation:"挖空心思，想尽办法。", example:"他费尽心思想要讨好上司，结果还是碰了一鼻子灰。"}]},
+    {t:"第 11 课《拥抱未来》", sentences:["雨丝密密斜斜地飘在空中，好像笼罩了一层薄雾。","饱餐一顿后，他舔了舔嘴角，心满意足地揉了揉肚子。","小明就像着了魔似的到处乱跑，一眨眼就不见踪影了。","'咦，他们俩在干什么？'瞧见小明和小华躲在一旁窃窃私语，一个个问号浮现在我脑海里。"], idioms:[{name:"窃窃私语", explanation:"私下里说悄悄话。", example:"在考场上，他们俩窃窃私语，被老师发现了。"}, {name:"垂头丧气", explanation:"形容情绪低落，精神沮丧。", example:"考试成绩不好，明华垂头丧气地走回家。"}]},
+    {t:"第 12 课《再见，亲爱的伙伴》", sentences:["在这关键时刻，只要稍微犯一点儿错，就可能前功尽弃。","第二届联欢晚会的节目很丰富，有钢琴独奏、诗歌朗诵、大合唱。","'天下无不散之筵席'，很快地，我们即将小六毕业，跨入人生的另一个学习阶段。","人生的道路并不平坦，就算遇到困难，我们也一定要坚持到底，要有恒心，绝对不可以半途而废。"], idioms:[{name:"丈二和尚摸不着头脑", explanation:"指的是弄不清是怎么回事。", example:"爸爸一进家门，就对我喊道：'你快说，今天你做了什么坏事？'我听了犹如丈二和尚摸不着头脑，傻傻地看着他。"}, {name:"眉头一皱，计上心来", explanation:"形容略经思考，就有主意了。", example:""}, {name:"神不知鬼不觉", explanation:"形容行动十分隐秘，谁也不能觉察。", example:"正当我急得团团转时，看到课室的后门开着，我眉头一皱，计上心来，走后门！这样可以趁老师没留意的时候偷偷溜进课室，岂不是神不知，鬼不觉？"}]}
+  ]
+};
+
+let g = 'p3';
+function set(gr) { 
+  g = gr; 
+  render(); 
+}
+
+function render() {
+  document.querySelectorAll('.controls button').forEach(b => b.classList.remove('active'));
+  document.getElementById(`btn-${g}`).classList.add('active');
+  
+  const box = document.getElementById('content'); 
+  box.innerHTML = '';
+  
+  S[g].forEach((ls, i) => {
+    const p = document.createElement('div'); 
+    p.className = 'lesson-page';
+    
+    let sentencesHtml = ls.sentences.map(s => 
+      `<tr class="sentence-row"><td>${s}</td></tr>`
+    ).join('');
+    
+    let idiomsHtml = ls.idioms.map(idiom => 
+      `<tr><td class="idiom-name">${idiom.name}</td><td class="idiom-exp">${idiom.explanation}</td><td class="idiom-example">${idiom.example}</td></tr>`
+    ).join('');
+    
+    p.innerHTML = `
+      <h2 class="lesson-title">${ls.t}</h2>
+      
+      <div class="section-title">📝 句子</div>
+      <table>
+        <thead>
+          <tr><th style="width:100%">句子列表</th></tr>
+        </thead>
+        <tbody>
+          ${sentencesHtml}
+        </tbody>
+      </table>
+      
+      <div class="section-title">📖 成语</div>
+      <table>
+        <thead>
+          <tr><th style="width:25%">成语</th><th style="width:35%">解释</th><th style="width:40%">例句</th></tr>
+        </thead>
+        <tbody>
+          ${idiomsHtml}
+        </tbody>
+      </table>
+    `;
+    
+    box.appendChild(p);
+  });
+}
+
+render();
+</script>
+</body>
+</html>
