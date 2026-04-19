@@ -267,21 +267,21 @@
                 // Idioms view - grouped by grade level
                 if (currentLevel === 'all') {
                     // Show two tables: P4 first, then P6
-                    html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><div class="section-title\">成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p4IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                     
-                    html += '<div class="lesson-page"><div class="lesson-title">P6 成语俗语</div><div class="section-title\">成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    html += '<div class="lesson-page"><div class="lesson-title">P6 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p6IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                 } else if (currentLevel === 'p4') {
                     // Show only P4 table
-                    html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><div class="section-title\">成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p4IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                 } else if (currentLevel === 'p6') {
                     // Show only P6 table
-                    html += '<div class="lesson-page"><div class="lesson-title">P6 成语俗语</div><div class="section-title\">成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    html += '<div class="lesson-page"><div class="lesson-title">P6 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p6IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                 }
