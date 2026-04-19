@@ -1,1 +1,1 @@
-Nothing needs to be added to .gitignore since only a single HTML file was modified and it's a source code file that shouldn't be ignored.
+Nothing should be ignored based on the provided file changes. The only modified file is an HTML source file (`zuowen/chengyujuzi.html`), which should not be added to .gitignore.
