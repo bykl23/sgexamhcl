@@ -1,1 +1,1 @@
-Nothing should be ignored based on the provided file changes. The only modified file is an HTML source file (`zuowen/chengyujuzi.html`), which should not be added to .gitignore.
+Nothing should be ignored based on the provided file changes. The modified file 'zuowen/chengyujuzi.html' is a source code file that should be tracked in version control.
