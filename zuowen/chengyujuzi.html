@@ -69,6 +69,7 @@
             <span>📖 年级：</span>
             <button id="btn-level-all" onclick="setLevel('all')" class="active">全部</button>
             <button id="btn-level-p4" onclick="setLevel('p4')">小四</button>
+            <button id="btn-level-p5" onclick="setLevel('p5')">小五</button>
             <button id="btn-level-p6" onclick="setLevel('p6')">小六</button>
         </div>
         <div class="control-row">
@@ -192,6 +193,33 @@
             { name: "马路如虎口", explanation: "形容马路上很危险，大家必须注意安全。", example: "\"马路如虎口\"，我们在马路上要时刻注意交通安全。" }
         ];
 
+        // P5 Idioms Data - flattened by grade
+        const p5IdiomsData = [
+            { name: "不管三七二十一", explanation: "不管是对是错，不管原因，不顾一切地去做。", example: "为了搭上这辆车，他不管三七二十一，冲过了马路。" },
+            { name: "目不转睛", explanation: "眼珠子一动不动地盯着看。形容注意力集中。", example: "魔术表演太精彩了，观众们目不转睛地看着。" },
+            { name: "异口同声", explanation: "意思是不同的人说同样的话。形容意见一致。", example: "级任老师提议小华当班长，同学们异口同声地说\"好\"。" },
+            { name: "不约而同", explanation: "事先没有约定，彼此的言论或行动却完全一致。", example: "星期天，我和小明不约而同地来到了图书馆读书。" },
+            { name: "喜出望外", explanation: "遇到意外的喜事，心中非常高兴。", example: "小明看到爸爸送给他的生日礼物是手机，喜出望外。" },
+            { name: "不知不觉", explanation: "没有觉察到，没有意识到。", example: "奶奶坐在沙发上休息，不知不觉，睡着了。" },
+            { name: "死里逃生", explanation: "从极危险的境地中逃脱，没有死。", example: "从地震中死里逃生后，他更加珍惜自己拥有的一切。" },
+            { name: "齐心协力", explanation: "认识一致，共同努力。", example: "只有大家齐心协力，才能解决困难。" },
+            { name: "狼吞虎咽", explanation: "形容吃东西又猛又急的样子。", example: "饿了一天，小美端起饭碗，狼吞虎咽地吃了起来。" },
+            { name: "病从口入", explanation: "疾病多是由食物传染。比喻应该注意饮食卫生。", example: "\"病从口入\"，要想不生病，就要注意饮食卫生。" },
+            { name: "无精打采", explanation: "没有精神。", example: "因为考试没考好，我一整天都闷闷不乐，无精打采的。" },
+            { name: "举手之劳", explanation: "形容事情很容易办到；不费事。", example: "随手关灯是举手之劳，形成习惯就是环保。" },
+            { name: "风平浪静", explanation: "①没有风浪。②好像什么事情都没有发生一样，比喻平静无事。", example: "暴风雨过后，大海又恢复了风平浪静。希望以后都能风平浪静，不要再有任何争吵发生了。" },
+            { name: "赞不绝口", explanation: "赞美的话说个不停，形容对人或事物十分赞赏。", example: "圣淘沙美丽的风景使游人赞不绝口。" },
+            { name: "路不拾遗", explanation: "东西掉在路上没有人捡走据为己有，形容社会风气很好。", example: "这里的社会风气很好，可说是\"夜不闭户，路不拾遗\"。" },
+            { name: "争先恐后", explanation: "争着向前，担心落后。", example: "下课了，同学们争先恐后地上前帮老师拿东西。" },
+            { name: "接二连三", explanation: "一个接着一个，接连不断。", example: "家里接二连三地发生事情，弄得妈妈不知道该怎么办才好。" },
+            { name: "毫不犹豫", explanation: "形容在处理事情上非常果断，没有片刻迟疑。", example: "当别人遇到困难的时候，我们应该毫不犹豫地帮助别人。" },
+            { name: "东奔西跑", explanation: "到处奔波。多指为了生活或者为了某个目的四处奔走活动。", example: "他的爸爸每天总是东奔西跑，没有时间照顾他。" },
+            { name: "愚公移山", explanation: "做事不怕困难，坚持不放弃。", example: "做事如果有愚公移山的精神，遇到再大的困难也不怕。" },
+            { name: "女扮男装", explanation: "女子穿上男装，打扮成男子的模样。", example: "花木兰女扮男装，替父从军。" },
+            { name: "光阴似箭", explanation: "比喻时间过得快。", example: "\"光阴似箭，日月如梭\"，转眼间，我已经是小五的学生了。" },
+            { name: "上气不接下气", explanation: "形容因为劳累或焦急而气喘得很厉害。", example: "参赛者跑到终点时已经上气不接下气了。" }
+        ];
+
         // P6 Idioms Data - flattened by grade
         const p6IdiomsData = [
             { name: "不屈不挠", explanation: "形容意志坚强，永不屈服（挠：弯曲，比喻屈服）。", example: "只有不屈不挠的精神，才能战胜一切困难。" },
@@ -236,7 +264,7 @@
         ];
 
         let currentType = 'sentences';
-        let currentLevel = 'all'; // 'all', 'p4', 'p6'
+        let currentLevel = 'all'; // 'all', 'p4', 'p5', 'p6'
 
         function setType(type) {
             currentType = type;
@@ -250,6 +278,7 @@
             document.querySelectorAll('.controls button[id^="btn-level"]').forEach(b => b.classList.remove('active'));
             if (level === 'all') document.getElementById('btn-level-all').classList.add('active');
             else if (level === 'p4') document.getElementById('btn-level-p4').classList.add('active');
+            else if (level === 'p5') document.getElementById('btn-level-p5').classList.add('active');
             else if (level === 'p6') document.getElementById('btn-level-p6').classList.add('active');
             renderContent();
         }
@@ -275,9 +304,13 @@
             } else {
                 // Idioms view - grouped by grade level
                 if (currentLevel === 'all') {
-                    // Show two tables: P4 first, then P6
+                    // Show three tables: P4, P5, then P6
                     html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p4IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
+                    html += '</tbody></table></div>';
+                    
+                    html += '<div class="lesson-page"><div class="lesson-title">P5 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    p5IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                     
                     html += '<div class="lesson-page"><div class="lesson-title">P6 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
@@ -287,6 +320,11 @@
                     // Show only P4 table
                     html += '<div class="lesson-page"><div class="lesson-title">P4 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
                     p4IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
+                    html += '</tbody></table></div>';
+                } else if (currentLevel === 'p5') {
+                    // Show only P5 table
+                    html += '<div class="lesson-page"><div class="lesson-title">P5 成语俗语</div><table><thead><tr><th style="width: 20%;">成语</th><th style="width: 35%;">解释</th><th style="width: 45%;">例句</th></tr></thead><tbody>';
+                    p5IdiomsData.forEach(idiom => { html += '<tr><td><span class="idiom-name">' + idiom.name + '</span></td><td>' + idiom.explanation + '</td><td><span class="idiom-example">' + idiom.example + '</span></td></tr>'; });
                     html += '</tbody></table></div>';
                 } else if (currentLevel === 'p6') {
                     // Show only P6 table
