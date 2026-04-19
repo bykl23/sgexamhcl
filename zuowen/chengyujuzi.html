@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>新加坡小学高级华文作文资源</title>
+    <title>新加坡小学高级华文成语好句</title>
     <style>
         :root { --primary: #2c3e50; --accent: #3498db; --border: #bdc3c7; --bg: #f8f9fa; }
         body { font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", Arial, sans-serif; margin: 0; padding: 15px; background: #e9ecef; color: #333; line-height: 1.4; }
@@ -50,7 +50,7 @@
         <button onclick="window.location.href='chengyujuzi.html'" style="background: #3498db;">📚 成语好句</button>
     </div>
     <div class="controls">
-        <h1 style="width: 100%; margin: 5px 0; font-size: 16px; padding-bottom: 5px;">📖 P6 好句子分类提取（按 PSLE 作文主题）</h1>
+        <h1 style="width: 100%; margin: 5px 0; font-size: 16px; padding-bottom: 5px;">新加坡小学高级华文成语好句</h1>
         <div class="control-row">
             <span>📚 类型：</span>
             <button id="btn-sentences" onclick="setType('sentences')" class="active">好词好句</button>
@@ -74,7 +74,6 @@
         const sentencesData = [
             { 
                 category: "1. 坚强意志 / 克服困难", 
-                subtitle: "（对应：学习新知识 / 假期计划 / 个人成长）",
                 sentences: [
                     "望着眼前的一幕，我的脑海中产生了一连串的疑问：我行吗？",
                     "他发挥了不屈不挠的精神，一一克服了摆在他眼前的所有困难。",
@@ -88,7 +87,6 @@
             },
             { 
                 category: "2. 家庭关系和谐 / 敬老尊贤", 
-                subtitle: "",
                 sentences: [
                     "祖父笑眯眯地对孙子说：\"你要牵着我的手，别走丢呀！\"",
                     "妈妈吩咐我把一个竹篮从楼上吊下来。",
@@ -100,7 +98,6 @@
             },
             { 
                 category: "3. 关爱他人 / 好人好事", 
-                subtitle: "",
                 sentences: [
                     "看见小明故意把伞歪向他这边，他嘴唇微微抖动，双眼闪着泪光。",
                     "小猫被打得遍体鳞伤，害怕得全身发抖。",
@@ -112,7 +109,6 @@
             },
             { 
                 category: "4. 阅读", 
-                subtitle: "",
                 sentences: [
                     "首 10 位申请者可获得由出版社赠送的一套书籍。",
                     "他从口袋里掏出五分钱，放在出租连环画的书摊前，然后选了一本书，津津有味地读了起来。",
@@ -121,7 +117,6 @@
             },
             { 
                 category: "5. 健康生活 / 日常生活", 
-                subtitle: "",
                 sentences: [
                     "他脸色苍白，冷得全身发抖，一连打了好几个喷嚏。",
                     "发烧的时候，浑身滚烫，四肢无力，那种滋味真不好受。",
@@ -133,7 +128,6 @@
             },
             { 
                 category: "6. 自然景物 / 天气环境", 
-                subtitle: "（对应：环保 / 环境描写）",
                 sentences: [
                     "中午，太阳像个大火球，炙烤着大地。他热得满头大汗，头上都冒出蒸气来。",
                     "这时，外面正下着倾盆大雨。风呼呼地吹着，雨哗哗地下着，密密的雨点在天地间织起了一张灰蒙蒙的大网。",
@@ -143,7 +137,6 @@
             },
             { 
                 category: "7. 同学相处 / 校园生活 / 邻里关系", 
-                subtitle: "（对应：同学之间互助 / 邻里关系）",
                 sentences: [
                     "对方把我的书弄脏了，不但不道歉，反而趁我不注意的时候溜走了。",
                     "那个人顿时哑口无言，垂着头，羞愧地溜走了。",
@@ -159,7 +152,6 @@
             },
             { 
                 category: "8. 整理私物（好习惯）/ 小组合作", 
-                subtitle: "",
                 sentences: [
                     "东西不见了，我懊悔万分，眼泪忍不住夺眶而出。",
                     "我见到失而复得的东西，便破涕而笑，心中的喜悦是非笔墨所能形容的。",
@@ -168,7 +160,6 @@
             },
             { 
                 category: "9. 传统文化 / 常识", 
-                subtitle: "",
                 sentences: [
                     "龙象征吉祥和好运，因此皇帝的衣服和物品上都装饰有龙的图案。"
                 ]
@@ -235,7 +226,7 @@
 
             if (currentType === 'sentences') {
                 sentencesData.forEach((item, index) => {
-                    html += '<div class="lesson-page"><div class="lesson-title">' + item.category + (item.subtitle ? ' ' + item.subtitle : '') + '</div><div class="section-title\">好词好句</div><ul class="sentence-list">';
+                    html += '<div class="lesson-page"><div class="lesson-title">' + item.category + '</div><ul class="sentence-list">';
                     item.sentences.forEach(s => { html += '<li>' + s + '</li>'; });
                     html += '</ul></div>';
                 });
